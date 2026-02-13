@@ -1,6 +1,6 @@
 # Binance AI Trading Bot - Changelog
 
-## Version 1.0.0 (2024)
+## Version 1.0.0 (2026)
 
 ### Features Added
 
