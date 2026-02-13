@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Crypto AI Trade</title>
+    <link href="./styles.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0d1a0d 50%, #0a0a0a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+        .matrix-char {
+            position: absolute;
+            color: #00ff00;
+            font-size: 16px;
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .login-card {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #1a3a1a;
+            border-radius: 16px;
+            padding: 48px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 0 60px rgba(0, 255, 0, 0.1);
+        }
+        .login-card:hover {
+            box-shadow: 0 0 80px rgba(0, 255, 0, 0.15);
+            border-color: #2a5a2a;
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0d0d0d;
+            border: 1px solid #1a3a1a;
+            border-radius: 8px;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+        .form-input::placeholder {
+            color: #2a4a2a;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .logo h1 {
+            color: #00ff00;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            letter-spacing: 2px;
+        }
+        .logo p {
+            color: #2a5a2a;
+            font-size: 13px;
+            margin-top: 8px;
+            letter-spacing: 4px;
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #1a3a1a, transparent);
+            margin: 28px 0;
+        }
+        .links {
+            text-align: center;
+            margin-top: 24px;
+        }
+        .links a {
+            color: #2a5a2a;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .links a:hover {
+            color: #00ff00;
+        }
+        .terminal {
+            background: #0a0a0a;
+            border: 1px solid #1a3a1a;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #00ff00;
+        }
+        .terminal-line {
+            margin-bottom: 4px;
+        }
+        .terminal-prompt {
+            color: #00ff00;
+        }
+        .terminal-command {
+            color: #00aa00;
+        }
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #3a1a1a;
+            color: #ff4444;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <div class="login-card">
+        <div class="logo">
+            <h1>GRATIORA AI TRADE</h1>
+            <p>GRID BOT AUTOMATION</p>
+        </div>
+        
+        <div class="error-message" id="errorMessage"></div>
+        
+        <form id="loginForm">
+            <input type="email" name="email" class="form-input" placeholder="EMAIL ADDRESS" required>
+            <input type="password" name="password" class="form-input" placeholder="PASSWORD" required>
+            <button type="submit" class="btn-login">INITIALIZE SYSTEM</button>
+        </form>
+        
+        <div class="divider"></div>
+        
+        <div class="links">
+            <a href="register.html">NEW REGISTRATION</a>
+        </div>
+        
+        <div class="terminal">
+            <div class="terminal-line"><span class="terminal-prompt">root@system:~#</span> <span class="terminal-command">./login.sh</span></div>
+            <div class="terminal-line"><span class="terminal-prompt">Waiting for authentication...</span></div>
+            <div class="terminal-line" id="terminalStatus"><span class="terminal-prompt">Status:</span> Ready</div>
+        </div>
+    </div>
+    
+    <script>
+        // Matrix rain effect
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const matrixBg = document.getElementById('matrixBg');
+        const cols = Math.floor(window.innerWidth / 20);
+        
+        for (let i = 0; i < cols; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            char.style.left = i * 20 + 'px';
+            char.style.animationDelay = Math.random() * 3 + 's';
+            char.style.animationDuration = 3 + Math.random() * 2 + 's';
+            matrixBg.appendChild(char);
+        }
+        
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+            
+            document.getElementById('terminalStatus').innerHTML = '<span class="terminal-prompt">Status:</span> Authenticating...';
+            
+            try {
+                const response = await fetch(`api.php?action=login&email=${encodeURIComponent(data.email)}&password=${encodeURIComponent(data.password)}`, {
+                    method: 'POST'
+                });
+                
+                const result = await response.json();
+                
+                if (result.token) {
+                    localStorage.setItem('authToken', result.token);
+                    localStorage.setItem('currentUser', JSON.stringify(result.user));
+                    document.getElementById('terminalStatus').innerHTML = '<span class="terminal-prompt">Status:</span> <span style="color:#00ff00">Access Granted</span>';
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    document.getElementById('errorMessage').textContent = result.error || 'Authentication failed';
+                    document.getElementById('errorMessage').style.display = 'block';
+                    document.getElementById('terminalStatus').innerHTML = '<span class="terminal-prompt">Status:</span> <span style="color:#ff4444">Access Denied</span>';
+                }
+            } catch (err) {
+                document.getElementById('errorMessage').textContent = 'Connection error. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('terminalStatus').innerHTML = '<span class="terminal-prompt">Status:</span> <span style="color:#ff4444">Connection Error</span>';
+            }
+        });
+        
+        // Check if already logged in
+        if (localStorage.getItem('authToken')) {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

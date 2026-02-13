@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Binance AI Trade</title>
+    <link href="./styles.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0d1a0d 50%, #0a0a0a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+        .matrix-char {
+            position: absolute;
+            color: #00ff00;
+            font-size: 16px;
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid #1a3a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        .navbar-brand {
+            color: #00ff00;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        .navbar-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* User Dropdown */
+        .user-dropdown {
+            position: relative;
+        }
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .user-avatar:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.5rem;
+            background: rgba(10, 10, 10, 0.98);
+            border: 1px solid #1a3a1a;
+            border-radius: 8px;
+            min-width: 220px;
+            padding: 0.5rem 0;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .dropdown-menu.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .dropdown-header {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #1a3a1a;
+            color: #00ff00;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dropdown-item {
+            padding: 0.75rem 1rem;
+            color: #94a3b8;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .dropdown-item:hover {
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+        }
+        .dropdown-item.disabled {
+            color: #475569;
+            cursor: not-allowed;
+        }
+        .dropdown-item.disabled:hover {
+            background: transparent;
+            color: #475569;
+        }
+        .dropdown-divider {
+            height: 1px;
+            background: #1a3a1a;
+            margin: 0.5rem 0;
+        }
+        .dropdown-section-title {
+            padding: 0.5rem 1rem;
+            color: #64748b;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        @media (max-width: 1024px) {
+            .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .grid-cols-4 { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            border-color: #2a5a2a;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        .stat-label {
+            font-size: 0.875rem;
+            color: #2a5a2a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+        }
+        .status-indicator.connected { 
+            background: #00ff00; 
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        .status-indicator.testnet { 
+            background: #f59e0b; 
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+        .status-indicator.disconnected { 
+            background: #ef4444; 
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #2a5a2a;
+        }
+        .empty-state svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        .bot-item {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid #1a3a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .bot-item:hover {
+            border-color: #2a5a2a;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+        .bot-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #00ff00;
+        }
+        .bot-details {
+            font-size: 0.875rem;
+            color: #2a5a2a;
+        }
+        .btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            border: none;
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-success { 
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+            color: #000;
+        }
+        .btn-warning { 
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+        }
+        .btn-danger { 
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: #fff;
+        }
+        .terminal {
+            background: #0a0a0a;
+            border: 1px solid #1a3a1a;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 24px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #00ff00;
+        }
+        .terminal-line {
+            margin-bottom: 4px;
+        }
+        .terminal-prompt {
+            color: #00ff00;
+        }
+        
+        /* Confirmation Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 0;
+            min-width: 400px;
+            max-width: 90%;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .modal-header h2 {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .modal-body {
+            padding: 1.5rem;
+        }
+        .modal-body p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+        .btn-cancel {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-cancel:hover {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            transform: translateY(-1px);
+        }
+        .btn-confirm-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+        .btn-confirm-danger:hover {
+            background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+        }
+        .btn-confirm-success {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+        }
+        .btn-confirm-success:hover {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">GRATIORA AI TRADE</a>
+        <div style="display: flex; gap: 1.5rem;">
+            <a href="create-bot.html" style="color: #2a5a2a; text-decoration: none; font-size: 0.875rem;">Create Bot</a>
+            <a href="vip.html" style="color: #f59e0b; text-decoration: none; font-size: 0.875rem;">VIP</a>
+            <a href="admin.html" id="adminLink" style="color: #ef4444; text-decoration: none; font-size: 0.875rem; display: none;">Admin</a>
+        </div>
+        <div class="navbar-user" id="userSection">
+            <div class="user-dropdown">
+                <div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()">?</div>
+                <div class="dropdown-menu" id="userDropdownMenu">
+                    <div class="dropdown-header" id="dropdownUserEmail">user@email.com</div>
+                    <div class="dropdown-header" id="dropdownVipTier" style="font-size: 0.75rem; color: #22c55e;">VIP: User</div>
+                    
+                    <div class="dropdown-section-title">Update Account</div>
+                    <div class="dropdown-item" onclick="alert('Account settings coming soon!')">
+                        <span>👤</span> Name
+                    </div>
+                    <div class="dropdown-item" onclick="alert('Email settings coming soon!')">
+                        <span>📧</span> Email
+                    </div>
+                    <div class="dropdown-item" onclick="alert('Password change coming soon!')">
+                        <span>🔒</span> Password
+                    </div>
+                    
+                    <div class="dropdown-divider" id="adminDivider" style="display: none;"></div>
+                    
+                    <div class="dropdown-item" id="adminDropdownItem" onclick="window.location.href='admin.html'" style="display: none;">
+                        <span>⚙️</span> Administrator
+                    </div>
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    <div class="dropdown-section-title">API Key</div>
+                    <div class="dropdown-item" onclick="alert('Testnet API settings coming soon!')">
+                        <span>🧪</span> Testnet
+                    </div>
+                    <div class="dropdown-item" onclick="alert('Real API settings coming soon!')">
+                        <span>🔑</span> Real Binance API
+                    </div>
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    <div class="dropdown-section-title">Credit Coins Beta</div>
+                    <div class="dropdown-item disabled">
+                        <span>🪙</span> Under Development
+                    </div>
+                    
+                    <div class="dropdown-divider"></div>
+                    
+                    <div class="dropdown-item" onclick="logout()" style="color: #ef4444;">
+                        <span>🚪</span> Logout
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="grid grid-cols-4" style="margin-bottom: 2rem;">
+            <div class="card">
+                <div class="stat-label">Balance</div>
+                <div class="stat-value" id="balanceValue">$0</div>
+            </div>
+            <div class="card">
+                <div class="stat-label">Active Bots</div>
+                <div class="stat-value" id="activeBotsCount">0</div>
+            </div>
+            <div class="card">
+                <div class="stat-label">Today's Profit</div>
+                <div class="stat-value" style="color: #00ff00;" id="todayProfit">$0.00</div>
+            </div>
+            <div class="card">
+                <div class="stat-label">Server Status</div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div class="status-indicator disconnected" id="statusIndicator"></div>
+                    <span id="statusText" style="color: #2a5a2a;">Not Connected</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="color: #00ff00;">Your Bots</h3>
+            <a href="create-bot.html" class="btn btn-success">+ Create Bot</a>
+        </div>
+        <div id="botsList">
+                <div class="empty-state">Loading bots...</div>
+            </div>
+        </div>
+        
+        <div class="terminal">
+            <div class="terminal-line"><span class="terminal-prompt">root@system:~#</span> <span class="terminal-command">./dashboard.sh</span></div>
+            <div class="terminal-line"><span class="terminal-prompt">Initializing dashboard...</span></div>
+            <div class="terminal-line" id="terminalStatus"><span class="terminal-prompt">Status:</span> Connected</div>
+        </div>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const matrixBg = document.getElementById('matrixBg');
+        const cols = Math.floor(window.innerWidth / 20);
+        
+        for (let i = 0; i < cols; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            char.style.left = i * 20 + 'px';
+            char.style.animationDelay = Math.random() * 3 + 's';
+            char.style.animationDuration = 3 + Math.random() * 2 + 's';
+            matrixBg.appendChild(char);
+        }
+        
+        // Global functions
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+
+        function toggleUserDropdown() {
+            const dropdown = document.getElementById('userDropdownMenu');
+            if (dropdown) {
+                dropdown.classList.toggle('show');
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('userDropdownMenu');
+            const avatar = document.getElementById('userAvatar');
+            if (dropdown && dropdown.classList.contains('show')) {
+                if (!dropdown.contains(event.target) && !avatar.contains(event.target)) {
+                    dropdown.classList.remove('show');
+                }
+            }
+        });
+
+        // Check authentication
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('currentUser');
+        
+        if (!token || !userData) {
+            // Not logged in, redirect to login
+            window.location.href = 'login.html';
+        } else {
+            // Logged in, display user info
+            try {
+                const user = JSON.parse(userData);
+                const avatar = document.getElementById('userAvatar');
+                const dropdownEmail = document.getElementById('dropdownUserEmail');
+                const dropdownVipTier = document.getElementById('dropdownVipTier');
+                if (avatar) avatar.textContent = user.name ? user.name.charAt(0).toUpperCase() : (user.email ? user.email.charAt(0).toUpperCase() : 'U');
+                if (dropdownEmail) dropdownEmail.textContent = user.email || 'User';
+                if (dropdownVipTier) dropdownVipTier.textContent = 'VIP: ' + (user.role || 'User');
+                
+                // Check if user is admin from localStorage
+                if (user.role === 'Admin') {
+                    document.getElementById('adminLink').style.display = 'block';
+                    document.getElementById('adminDropdownItem').style.display = 'block';
+                    document.getElementById('adminDivider').style.display = 'block';
+                }
+            } catch (e) {
+                console.error('Error parsing user data:', e);
+            }
+            
+            // Load data from API
+            loadDashboardData();
+        }
+
+        async function loadDashboardData() {
+            const token = localStorage.getItem('authToken');
+            if (!token) return;
+            
+            // Load user profile
+            try {
+                const profileRes = await fetch('api.php?action=me', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (profileRes.ok) {
+                    const user = await profileRes.json();
+                    document.getElementById('userEmail').textContent = user.email || 'User';
+                    document.getElementById('userVipTier').textContent = 'VIP: ' + (user.role || 'User');
+                    
+                    // Update localStorage with role from API
+                    const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+                    currentUser.role = user.role;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Show admin link for admins
+                    if (user.role === 'Admin') {
+                        document.getElementById('adminLink').style.display = 'block';
+                        document.getElementById('adminDropdownItem').style.display = 'block';
+                        document.getElementById('adminDivider').style.display = 'block';
+                    }
+                }
+            } catch (e) {
+                console.log('Could not load profile');
+            }
+            
+            // Load bots
+            try {
+                const botsRes = await fetch('api.php?action=bots', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (botsRes.ok) {
+                    const bots = await botsRes.json();
+                    renderBots(bots);
+                    
+                    const activeBots = Array.isArray(bots) ? bots.filter(b => b.status === 'running').length : 0;
+                    document.getElementById('activeBotsCount').textContent = activeBots;
+                }
+            } catch (e) {
+                console.log('Could not load bots');
+                document.getElementById('botsList').innerHTML = '<div class="empty-state">No bots found</div>';
+            }
+        }
+
+        function renderBots(bots) {
+            const container = document.getElementById('botsList');
+            if (!Array.isArray(bots) || bots.length === 0) {
+                container.innerHTML = '<div class="empty-state">No bots yet. <a href="create-bot.html" style="color: #00ff00;">Create your first bot!</a></div>';
+                return;
+            }
+            
+            container.innerHTML = bots.map(bot => `
+                <div class="bot-item">
+                    <div>
+                        <div class="bot-name">${bot.name || 'Unnamed'}</div>
+                        <div class="bot-details">${bot.symbol} - ${bot.strategy} - ${bot.type}</div>
+                        ${bot.total_profit ? `<div class="bot-details" style="color: ${parseFloat(bot.total_profit) >= 0 ? '#00ff00' : '#ef4444'};">Profit: ${parseFloat(bot.total_profit).toFixed(2)} USDT</div>` : ''}
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="background: ${bot.status === 'running' ? '#00aa00' : bot.status === 'error' ? '#ef4444' : '#6b7280'}; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; color: ${bot.status === 'running' ? '#000' : '#fff'};">
+                            ${bot.status || 'unknown'}
+                        </span>
+                        ${bot.status !== 'running' ? 
+                            `<button class="btn btn-success" onclick="startBot(${bot.id})" style="padding: 4px 8px; font-size: 0.75rem;">Start</button>` :
+                            `<button class="btn btn-danger" onclick="stopBot(${bot.id})" style="padding: 4px 8px; font-size: 0.75rem;">Stop</button>`
+                        }
+                        <button class="btn btn-back" onclick="deleteBot(${bot.id})" style="padding: 4px 8px; font-size: 0.75rem;">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        async function startBot(botId) {
+            const token = localStorage.getItem('authToken');
+            try {
+                const res = await fetch(`api.php?action=bots/${botId}/start`, {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const result = await res.json();
+                if (result.success) {
+                    loadDashboardData();
+                    updateTerminal(`Bot ${botId} started successfully`);
+                } else {
+                    showError(result.error);
+                }
+            } catch (e) {
+                showError('Error starting bot');
+            }
+        }
+        
+        async function stopBot(botId) {
+            const token = localStorage.getItem('authToken');
+            try {
+                const res = await fetch(`api.php?action=bots/${botId}/stop`, {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const result = await res.json();
+                if (result.success) {
+                    loadDashboardData();
+                    updateTerminal(`Bot ${botId} stopped`);
+                } else {
+                    showError(result.error);
+                }
+            } catch (e) {
+                showError('Error stopping bot');
+            }
+        }
+        
+        async function deleteBot(botId) {
+            if (!confirm('Are you sure you want to delete this bot?')) return;
+            const token = localStorage.getItem('authToken');
+            try {
+                const res = await fetch(`api.php?action=bots/${botId}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                const result = await res.json();
+                if (result.success) {
+                    loadDashboardData();
+                    updateTerminal(`Bot ${botId} deleted`);
+                } else {
+                    showError(result.error);
+                }
+            } catch (e) {
+                showError('Error deleting bot');
+            }
+        }
+        
+        function updateTerminal(message) {
+            const terminal = document.getElementById('terminalStatus');
+            if (terminal) {
+                terminal.innerHTML = '<span class="terminal-prompt">Status:</span> ' + message;
+            }
+        }
+    </script>
+</body>
+</html>
+

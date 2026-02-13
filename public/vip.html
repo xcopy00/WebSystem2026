@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Subscription - Binance AI Trade</title>
+    <link href="./styles.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0d1a0d 50%, #0a0a0a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+        .matrix-char {
+            position: absolute;
+            color: #00ff00;
+            font-size: 16px;
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid #1a3a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        .navbar-brand {
+            color: #00ff00;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        .navbar-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar-links a {
+            color: #2a5a2a;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        .navbar-links a:hover {
+            color: #00ff00;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .page-title {
+            color: #00ff00;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .page-subtitle {
+            color: #2a5a2a;
+            font-size: 0.875rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .current-plan {
+            background: rgba(10, 10, 10, 0.95);
+            border: 2px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .current-plan-info h3 {
+            color: #00ff00;
+            margin-bottom: 0.5rem;
+        }
+        .current-plan-info p {
+            color: #2a5a2a;
+            font-size: 0.875rem;
+        }
+        .btn-upgrade {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-upgrade:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .plan-card {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .plan-card:hover {
+            border-color: #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.1);
+        }
+        .plan-card.current {
+            border-color: #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+        }
+        .plan-card.recommended {
+            border-color: #f59e0b;
+        }
+        .plan-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .plan-name {
+            color: #00ff00;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .plan-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .plan-price span {
+            font-size: 0.875rem;
+            color: #2a5a2a;
+        }
+        .plan-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        .plan-features li {
+            padding: 0.5rem 0;
+            color: #ccc;
+            font-size: 0.875rem;
+            border-bottom: 1px solid #1a3a1a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .plan-features li::before {
+            content: '✓';
+            color: #00ff00;
+        }
+        .plan-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .plan-btn.current {
+            background: transparent;
+            border: 1px solid #1a3a1a;
+            color: #2a5a2a;
+            cursor: default;
+        }
+        .plan-btn.upgrade {
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+            color: #000;
+        }
+        .plan-btn.upgrade:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        .activate-section {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .activate-section h3 {
+            color: #00ff00;
+            margin-bottom: 1rem;
+        }
+        .activate-input {
+            display: flex;
+            gap: 1rem;
+        }
+        .form-input {
+            flex: 1;
+            padding: 0.75rem;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #1a3a1a;
+            border-radius: 6px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.875rem;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #00ff00;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+            color: #000;
+        }
+        .btn-back {
+            background: transparent;
+            border: 1px solid #1a3a1a;
+            color: #2a5a2a;
+        }
+        .message {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: none;
+        }
+        .message.success {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+        }
+        .message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            border: none !important;
+            transition: all 0.3s ease;
+            display: inline-block !important;
+            text-align: center !important;
+            vertical-align: middle !important;
+            line-height: 1.2 !important;
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+            color: #fff !important;
+        }
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">GRATIORA AI TRADE</a>
+        <div class="navbar-links">
+            <a href="index.html">Dashboard</a>
+            <a href="create-bot.html">Create Bot</a>
+            <a href="vip.html">VIP</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">VIP Subscription</h1>
+        <p class="page-subtitle">Upgrade your trading capabilities with premium features</p>
+        
+        <div class="current-plan" id="currentPlan">
+            <div class="current-plan-info">
+                <h3 id="currentPlanName">Loading...</h3>
+                <p id="currentPlanExpiry">Checking subscription status...</p>
+            </div>
+            <button class="btn-upgrade" onclick="showActivateSection()">Activate License</button>
+        </div>
+        
+        <div class="activate-section" id="activateSection" style="display: none;">
+            <h3>Activate License Code</h3>
+            <div class="activate-input">
+                <input type="text" class="form-input" id="licenseCode" placeholder="Enter your license code (e.g., VIP1-XXXXXXXXXXXX)">
+                <button class="btn btn-success" onclick="activateLicense()">Activate</button>
+            </div>
+            <div class="message" id="activateMessage"></div>
+        </div>
+        
+        <div class="plans-grid" id="plansGrid">
+            <!-- Plans loaded dynamically -->
+        </div>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const matrixBg = document.getElementById('matrixBg');
+        const cols = Math.floor(window.innerWidth / 20);
+        
+        for (let i = 0; i < cols; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            char.style.left = i * 20 + 'px';
+            char.style.animationDelay = Math.random() * 3 + 's';
+            char.style.animationDuration = 3 + Math.random() * 2 + 's';
+            matrixBg.appendChild(char);
+        }
+
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('currentUser');
+        
+        if (!token || !userData) {
+            window.location.href = 'login.html';
+        }
+        
+        let currentUserRole = 'User';
+        let plans = [];
+        
+        async function loadSubscription() {
+            try {
+                const res = await fetch('api.php?action=vip/my-subscription', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    currentUserRole = data.role || 'User';
+                    
+                    document.getElementById('currentPlanName').textContent = `Current Plan: ${currentUserRole}`;
+                    if (data.licenseExpires) {
+                        document.getElementById('currentPlanExpiry').textContent = `Expires: ${new Date(data.licenseExpires).toLocaleDateString()}`;
+                    } else {
+                        document.getElementById('currentPlanExpiry').textContent = 'No expiration';
+                    }
+                }
+            } catch (e) {
+                console.error('Error loading subscription:', e);
+            }
+        }
+        
+        async function loadPlans() {
+            try {
+                const res = await fetch('api.php?action=vip/plans');
+                if (res.ok) {
+                    plans = await res.json();
+                    renderPlans();
+                }
+            } catch (e) {
+                console.error('Error loading plans:', e);
+            }
+        }
+        
+        function formatLimit(value) {
+            return value == -1 ? 'Unlimited' : value;
+        }
+        
+        function renderPlans() {
+            const grid = document.getElementById('plansGrid');
+            
+            const featuresMap = {
+                'grid': '✓ Grid Trading',
+                'dca': '✓ DCA Strategy',
+                'arbitrage': '✓ Arbitrage Trading',
+                'smart': '✓ Smart AI Bot',
+                'api_access': '✓ API Access',
+                'priority': '✓ Priority Support',
+                'custom': '✓ Custom Strategies',
+                'whitelabel': '✓ White Label'
+            };
+            
+            grid.innerHTML = plans.map((plan, index) => {
+                const isCurrent = plan.type === currentUserRole;
+                const isRecommended = index === 2; // VIP3 recommended
+                const features = Array.isArray(plan.features) ? plan.features : [];
+                const featuresList = features.map(f => featuresMap[f] || f).join('</li><li>');
+                
+                return `
+                    <div class="plan-card ${isCurrent ? 'current' : ''} ${isRecommended ? 'recommended' : ''}">
+                        ${isRecommended ? '<div class="plan-badge">RECOMMENDED</div>' : ''}
+                        <div class="plan-name">${plan.name}</div>
+                        <div class="plan-price">${plan.price} <span>/ ${plan.duration_days} days</span></div>
+                        <ul class="plan-features">
+                            <li>Max ${formatLimit(plan.max_bots)} bots</li>
+                            <li>${formatLimit(plan.max_trades_per_day)} trades/day</li>
+                            ${featuresList ? `<li>${featuresList}</li>` : ''}
+                        </ul>
+                        <button class="plan-btn ${isCurrent ? 'current' : 'upgrade'}" 
+                                onclick="${isCurrent ? '' : 'alert(\'License purchase coming soon! Use a license code to upgrade.\')'}">
+                            ${isCurrent ? 'Current Plan' : 'Upgrade'}
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function showActivateSection() {
+            document.getElementById('activateSection').style.display = 'block';
+        }
+        
+        async function activateLicense() {
+            const code = document.getElementById('licenseCode').value.trim();
+            if (!code) {
+                showMessage('Please enter a license code', 'error');
+                return;
+            }
+            
+            try {
+                const res = await fetch('api.php?action=vip/subscribe', {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ license_code: code })
+                });
+                
+                const result = await res.json();
+                
+                if (result.success) {
+                    showMessage('Subscription activated successfully!', 'success');
+                    loadSubscription();
+                    loadPlans();
+                } else {
+                    showMessage(result.error || 'Invalid license code', 'error');
+                }
+            } catch (e) {
+                showMessage('Error activating license', 'error');
+            }
+        }
+        
+        function showMessage(text, type) {
+            const msg = document.getElementById('activateMessage');
+            msg.textContent = text;
+            msg.className = 'message ' + type;
+            msg.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Initialize
+        loadSubscription();
+        loadPlans();
+    </script>
+</body>
+</html>

@@ -1,0 +1,3319 @@
+<?php
+// Error log cleared at: 2026-01-29 01:31 UTC
+// Fixes applied:
+// 1. install.php: Changed require_once 'config.php' to require_once 'db.php'
+// 2. db.php: Changed new Database() to Database::getInstance()->getConnection()
+?>
+[11-Feb-2026 01:43:27 UTC] Database connection failed: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it
+[11-Feb-2026 04:21:14 UTC] PHP Fatal error:  Uncaught Error: Class "DBOperations" not found in C:\xampp\htdocs\test_login.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\test_login.php on line 11
+[11-Feb-2026 09:32:20 UTC] PHP Fatal error:  Uncaught Error: Class "Database" not found in C:\xampp\htdocs\setup_database.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\setup_database.php on line 12
+[11-Feb-2026 09:32:23 UTC] PHP Fatal error:  Uncaught Error: Class "Database" not found in C:\xampp\htdocs\setup_database.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\setup_database.php on line 12
+[11-Feb-2026 14:20:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getDBConnection() in C:\xampp\htdocs\setup_vip_bots.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\setup_vip_bots.php on line 12
+[11-Feb-2026 14:38:21 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'license_code' in 'field list' in C:\xampp\htdocs\db_operations.php:515
+Stack trace:
+#0 C:\xampp\htdocs\db_operations.php(515): PDO->prepare('\r\n            I...')
+#1 C:\xampp\htdocs\db_operations.php(549): DBOperations->createLicense(Array)
+#2 C:\xampp\htdocs\generate_test_license.php(24): DBOperations->generateLicenseCode('VIP1', 30, 'Test - Starter')
+#3 {main}
+  thrown in C:\xampp\htdocs\db_operations.php on line 515
+[11-Feb-2026 14:40:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'vip_tier' in 'field list' in C:\xampp\htdocs\db_operations.php:515
+Stack trace:
+#0 C:\xampp\htdocs\db_operations.php(515): PDO->prepare('\r\n            I...')
+#1 C:\xampp\htdocs\db_operations.php(549): DBOperations->createLicense(Array)
+#2 C:\xampp\htdocs\generate_test_license.php(24): DBOperations->generateLicenseCode('VIP1', 30, 'Test - Starter')
+#3 {main}
+  thrown in C:\xampp\htdocs\db_operations.php on line 515
+[11-Feb-2026 14:41:26 UTC] PHP Fatal error:  Uncaught Error: Class "Database" not found in Command line code:1
+Stack trace:
+#0 {main}
+  thrown in Command line code on line 1
+[11-Feb-2026 16:36:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function setSetting() in C:\xampp\htdocs\create_settings_table.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\create_settings_table.php on line 26
+[11-Feb-2026 17:00:05 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:00:05 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:00:09 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:00:09 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:00:11 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:00:11 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:00:11 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:00:11 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:01:38 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:01:38 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:04:16 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:04:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:04:17 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 17:04:17 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:51:43 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:51:43 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:51:53 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:51:53 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:51:55 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:51:55 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:53:01 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:53:01 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:53:08 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:53:08 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:16 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:16 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:17 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:17 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:17 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:17 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:17 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:54:17 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:56:17 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:56:17 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:56:42 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:56:42 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:56:43 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:56:43 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:57:02 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:57:02 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:57:04 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:57:04 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:16 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:16 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:17 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:17 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:18 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:18 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:18 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:18 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:19 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:19 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:20 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:20 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:22 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:22 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:48 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:48 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:52 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:52 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:54 UTC] PHP Warning:  Undefined variable $argv in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 18:58:54 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in C:\xampp\htdocs\worker.php on line 582
+[11-Feb-2026 20:36:01 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:36:01 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:01 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:01 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:36:01 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:36:01 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:01 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:36:01 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:01 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:01 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:01 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:01 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:01 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:01 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:01 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:02 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:02 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:02 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:12 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:12 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:12 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:13 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:13 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:13 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:36:14 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:14 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:15 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:36:15 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:36:15 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:36:15 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:36:15 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:36:15 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:36:15 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:36:15 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:36:15 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:36:15 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:15 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:15 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:15 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:36:15 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:36:15 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:36:15 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:36:15 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:36:15 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:36:28 UTC] DEBUG: REQUEST_URI=/api/admin/users/5/deactivate
+[11-Feb-2026 20:36:28 UTC] DEBUG: GET route=admin/users/5/deactivate
+[11-Feb-2026 20:36:28 UTC] DEBUG: Final URI='admin/users/5/deactivate' Method='PUT'
+[11-Feb-2026 20:36:28 UTC] DEBUG: REQUEST_URI=/api.php?route=admin/users/5/deactivate
+[11-Feb-2026 20:36:28 UTC] DEBUG: GET route=admin/users/5/deactivate
+[11-Feb-2026 20:36:28 UTC] DEBUG: Final URI='admin/users/5/deactivate' Method='PUT'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:38:21 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:38:21 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:38:21 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api.php?action=me
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/auth/me
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=auth/me
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='auth/me' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/dashboard
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api.php?action=admin/settings
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=N/A
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/settings' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/dashboard
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/dashboard
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/dashboard' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/worker/status
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/history?limit=100
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/licenses/history
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/licenses/history' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/licenses/stats
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/licenses/stats
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/licenses/stats' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/users
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/users
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/users' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api.php?route=worker/status
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=worker/status
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='worker/status' Method='GET'
+[11-Feb-2026 20:38:35 UTC] DEBUG: REQUEST_URI=/api/admin/licenses
+[11-Feb-2026 20:38:35 UTC] DEBUG: GET route=admin/licenses
+[11-Feb-2026 20:38:35 UTC] DEBUG: Final URI='admin/licenses' Method='GET'
+[11-Feb-2026 22:10:25 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:10:25 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:01 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:01 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:48 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:48 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:49 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:11:49 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:03 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:03 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:30 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:30 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:30 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:34 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:12:34 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:13:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:13:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:14:21 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:14:21 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:16:49 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:16:49 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:17:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:17:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:18:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:18:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:19:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:19:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:19:22 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:19:22 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:20:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:20:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:20:51 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:20:51 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:21:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:21:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:22:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:22:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:23:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:23:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:24:08 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:24:08 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:24:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:24:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:24:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:24:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:26:07 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:26:07 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:26:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:26:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:26:33 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:26:34 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:27:27 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:27:27 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:27:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:27:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:31:36 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:31:36 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:34:36 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:34:36 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:37 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:37 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:48 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:48 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:38:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:39:45 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:39:45 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:39:48 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:39:48 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:41:05 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:41:05 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:41:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:41:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:42:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:42:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:43:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:43:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:45:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:45:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:45:34 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:45:34 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:45:38 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:45:38 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:52 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:48:52 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:36 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:36 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:51:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:52:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:52:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[11-Feb-2026 22:53:27 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:53:27 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:53:33 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:53:33 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:53:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:53:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:54:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:54:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:54:24 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:54:24 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:54:33 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:54:33 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:55:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:57:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:58:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:58:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:58:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:58:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:58:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:58:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:25 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:25 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 22:59:32 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:12:51 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:12:52 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:13:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:13:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:16:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:16:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:16:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:16:46 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[11-Feb-2026 23:19:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:19:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:19:22 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:19:22 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:29:03 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:29:03 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:29:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:29:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:34:34 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:34:34 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:34:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:34:42 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:42:22 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:42:22 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:44:27 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:44:27 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:45:38 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:45:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:46:11 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:46:12 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:57 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:58 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:50:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:01 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:01 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:02 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:02 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:30 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[11-Feb-2026 23:51:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:41 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:41 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:09:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:10:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:10:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:10:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:10:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:20 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:20 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:20 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:20 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:20 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:29:20 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:45 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:45 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:45 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:45 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:31:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:09 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:10 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:11 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:11 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:11 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:32:11 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP3
+    [2] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:34:56 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:35:16 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:35:16 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:35:35 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:35:35 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:35:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:35:55 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:14 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:16 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:16 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:17 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:17 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:18 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:37:18 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:39:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:39:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:39:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:39:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:00 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:40:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:41:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:41:13 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:38 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:38 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:39 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:40 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:40 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:40 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:43:40 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:45:16 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:45:16 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:45:17 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:45:17 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:45:17 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:45:17 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:52:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:52:47 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:53:41 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:53:41 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:53:50 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:53:50 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:56:11 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:56:11 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:57:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 00:57:59 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:52:07 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:52:07 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:52:21 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:52:21 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:28 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:28 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:29 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:30 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:33 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:55:33 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:57:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 02:57:43 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 03:33:57 UTC] bots endpoint: input length = 4, data = null
+[12-Feb-2026 03:38:22 UTC] bots endpoint: input length = 4, data = null
+[12-Feb-2026 03:41:21 UTC] bots endpoint: input length = 4, data = null
+[12-Feb-2026 03:46:39 UTC] bots endpoint: input length = 4, data = null
+[12-Feb-2026 04:05:35 UTC] bots endpoint: input length = 303, data = array
+[12-Feb-2026 04:06:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:06:31 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:07:25 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:07:25 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:14:27 UTC] bots endpoint: input length = 303, data = array
+[12-Feb-2026 04:20:18 UTC] bots endpoint: input length = 302, data = array
+[12-Feb-2026 04:21:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:21:23 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:22:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:22:19 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 04:27:01 UTC] bots endpoint: input length = 308, data = array
+[12-Feb-2026 04:33:25 UTC] bots endpoint: input length = 303, data = array
+[12-Feb-2026 04:33:54 UTC] bots endpoint: input length = 306, data = array
+[12-Feb-2026 04:37:46 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:37:46 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:39:16 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:39:16 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:43:15 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:43:16 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:07 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:07 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:37 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:37 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:38 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:39 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:43 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:43 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:43 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:43 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:44 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:44:44 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:45:44 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:45:44 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:56:59 UTC] bots endpoint: input length = 309, data = array
+[12-Feb-2026 04:57:40 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 04:57:40 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:02:34 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:02:34 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:18:06 UTC] bots endpoint: input length = 303, data = array
+[12-Feb-2026 05:30:59 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:30:59 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:31:33 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:31:33 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:38:18 UTC] bots endpoint: input length = 304, data = array
+[12-Feb-2026 05:38:31 UTC] bots endpoint: input length = 302, data = array
+[12-Feb-2026 05:39:22 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:39:22 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:40:40 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:40:40 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:41:49 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:41:49 UTC] All user roles found: Array
+(
+    [0] => VIP6
+    [1] => Admin
+)
+
+[12-Feb-2026 05:43:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[12-Feb-2026 05:43:15 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[12-Feb-2026 05:43:35 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[12-Feb-2026 05:43:35 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => VIP6
+    [2] => Admin
+)
+
+[12-Feb-2026 05:43:51 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+
+[12-Feb-2026 05:43:51 UTC] All user roles found: Array
+(
+    [0] => User
+    [1] => Admin
+)
+

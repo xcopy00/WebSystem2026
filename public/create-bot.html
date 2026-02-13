@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Bot - Binance AI Trade</title>
+    <link href="./styles.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0d1a0d 50%, #0a0a0a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+        .matrix-char {
+            position: absolute;
+            color: #00ff00;
+            font-size: 16px;
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid #1a3a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        .navbar-brand {
+            color: #00ff00;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        .navbar-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar-links a {
+            color: #2a5a2a;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        .navbar-links a:hover {
+            color: #00ff00;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .card {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .card-title {
+            color: #00ff00;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #1a3a1a;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-label {
+            display: block;
+            color: #2a5a2a;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #1a3a1a;
+            border-radius: 6px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-success { 
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+            color: #000;
+        }
+        .btn-back {
+            background: transparent;
+            border: 1px solid #1a3a1a;
+            color: #2a5a2a;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        .vip-info {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00aa00;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .vip-info-title {
+            color: #00ff00;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        .vip-info-text {
+            color: #2a5a2a;
+            font-size: 0.75rem;
+        }
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            border-radius: 6px;
+            padding: 1rem;
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .strategy-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .strategy-tab {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid #1a3a1a;
+            border-radius: 6px;
+            color: #2a5a2a;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        .strategy-tab.active {
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%);
+            color: #000;
+            border-color: #00ff00;
+        }
+        .strategy-tab.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .premium-badge {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.625rem;
+            margin-left: 4px;
+        }
+        
+        /* Confirmation Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-content {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 0;
+            min-width: 400px;
+            max-width: 90%;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        .modal-header h2 {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        .modal-body {
+            padding: 1.5rem;
+        }
+        .modal-body p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+        .btn-cancel {
+            background: linear-gradient(135deg, #475569 0%, #334155 100%);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-cancel:hover {
+            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            transform: translateY(-1px);
+        }
+        .btn-confirm-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+        }
+        .btn-confirm-danger:hover {
+            background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.5);
+        }
+        .btn-confirm-success {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+        }
+        .btn-confirm-success:hover {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">GRATIORA AI TRADE</a>
+        <div class="navbar-links">
+            <a href="index.html">Dashboard</a>
+            <a href="create-bot.html">Create Bot</a>
+            <a href="vip.html">VIP</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="error-message" id="errorMessage"></div>
+        
+        <div class="vip-info" id="vipInfo">
+            <div class="vip-info-title">Your Subscription Limits</div>
+            <div class="vip-info-text" id="vipLimitsText">Loading...</div>
+        </div>
+
+        <div class="card">
+            <h2 class="card-title">Create New Bot</h2>
+            
+            <form id="createBotForm">
+                <div class="form-group">
+                    <label class="form-label">Bot Name</label>
+                    <input type="text" class="form-input" id="botName" placeholder="My Trading Bot" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select class="form-select" id="botType">
+                            <option value="spot">Spot Trading</option>
+                            <option value="future">Futures Trading</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Strategy</label>
+                        <select class="form-select" id="botStrategy">
+                            <option value="grid">Grid Trading</option>
+                            <option value="dca">DCA (Dollar Cost Averaging)</option>
+                            <option value="arbitrage">Arbitrage</option>
+                            <option value="smart">Smart Bot</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Trading Pair (e.g., BTCUSDT)</label>
+                    <input type="text" class="form-input" id="botSymbol" placeholder="BTCUSDT" required style="text-transform: uppercase;">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Investment (USDT)</label>
+                        <input type="number" class="form-input" id="botInvestment" placeholder="100" min="10" step="10">
+                    </div>
+                    <div class="form-group" id="leverageGroup" style="display: none;">
+                        <label class="form-label">Leverage (Futures)</label>
+                        <input type="number" class="form-input" id="botLeverage" placeholder="10" min="1" max="125" value="10">
+                    </div>
+                </div>
+                
+                <!-- Grid Strategy Settings -->
+                <div id="gridSettings" class="strategy-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Number of Grids</label>
+                            <input type="number" class="form-input" id="gridCount" placeholder="10" min="2" max="100" value="10">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Grid Interval (%)</label>
+                            <input type="number" class="form-input" id="gridInterval" placeholder="1" min="0.1" max="10" step="0.1" value="1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Lower Price</label>
+                            <input type="number" class="form-input" id="lowerPrice" placeholder="50000" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Upper Price</label>
+                            <input type="number" class="form-input" id="upperPrice" placeholder="60000" step="0.01">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DCA Strategy Settings -->
+                <div id="dcaSettings" class="strategy-section hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">DCA Amount (USDT)</label>
+                            <input type="number" class="form-input" id="dcaAmount" placeholder="50" min="10">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">DCA Interval (minutes)</label>
+                            <input type="number" class="form-input" id="dcaInterval" placeholder="60" min="1">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">DCA Multiplier</label>
+                            <input type="number" class="form-input" id="dcaMultiplier" placeholder="1.0" min="1" max="5" step="0.1" value="1.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Max DCA Orders</label>
+                            <input type="number" class="form-input" id="maxDcaOrders" placeholder="5" min="1" max="20">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Risk Management -->
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h3 class="card-title">Risk Management</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Take Profit (%)</label>
+                            <input type="number" class="form-input" id="takeProfit" placeholder="5" min="0.1" max="100" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Stop Loss (%)</label>
+                            <input type="number" class="form-input" id="stopLoss" placeholder="10" min="1" max="50" step="0.1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Minimum Profit per Trade (%)</label>
+                        <input type="number" class="form-input" id="minProfit" placeholder="0.1" min="0.01" max="10" step="0.01" value="0.1">
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <button type="button" class="btn btn-back" onclick="window.location.href='index.html'">← Back</button>
+                    <button type="submit" class="btn btn-success">Create Bot</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const matrixBg = document.getElementById('matrixBg');
+        const cols = Math.floor(window.innerWidth / 20);
+        
+        for (let i = 0; i < cols; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            char.style.left = i * 20 + 'px';
+            char.style.animationDelay = Math.random() * 3 + 's';
+            char.style.animationDuration = 3 + Math.random() * 2 + 's';
+            matrixBg.appendChild(char);
+        }
+
+        // Global state
+        let userLimits = { max_bots: 1, features: [] };
+        let currentBotCount = 0;
+
+        // Get auth token
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('currentUser');
+        
+        if (!token || !userData) {
+            window.location.href = 'login.html';
+        }
+
+        // Format max bots display
+        function formatMaxBots(max) {
+            return max === -1 ? 'Unlimited' : max.toLocaleString();
+        }
+        
+        // Load user limits
+        async function loadUserLimits() {
+            try {
+                const res = await fetch('api.php?action=vip/my-subscription', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    userLimits = data.limits || { max_bots: 1, features: [] };
+                    currentBotCount = data.currentBots || 0;
+                    
+                    document.getElementById('vipLimitsText').innerHTML = `
+                        VIP Level: <strong style="color: #00ff00;">${data.role}</strong> | 
+                        Bots: <strong style="color: #00ff00;">${currentBotCount}/${formatMaxBots(userLimits.max_bots)}</strong> | 
+                        Max Bots Allowed: <strong style="color: #00ff00;">${formatMaxBots(userLimits.max_bots)}</strong>
+                    `;
+                    
+                    // Update strategy dropdown based on features
+                    updateStrategyOptions(data.features || []);
+                }
+            } catch (e) {
+                console.error('Error loading limits:', e);
+            }
+        }
+
+        // Update strategy options based on VIP features
+        function updateStrategyOptions(features) {
+            const strategySelect = document.getElementById('botStrategy');
+            const options = strategySelect.options;
+            
+            const featureMap = {
+                'grid': 'grid',
+                'dca': 'dca',
+                'arbitrage': 'arbitrage',
+                'smart': 'smart'
+            };
+            
+            for (let i = 0; i < options.length; i++) {
+                const strategy = options[i].value;
+                const requiredFeature = featureMap[strategy];
+                if (requiredFeature && !features.includes(requiredFeature)) {
+                    options[i].disabled = true;
+                    options[i].text += ' (Premium)';
+                }
+            }
+        }
+
+        // Toggle futures leverage field
+        document.getElementById('botType').addEventListener('change', function() {
+            document.getElementById('leverageGroup').style.display = 
+                this.value === 'future' ? 'block' : 'none';
+        });
+
+        // Show/hide strategy settings
+        document.getElementById('botStrategy').addEventListener('change', function() {
+            const strategies = ['grid', 'dca', 'arbitrage', 'smart'];
+            strategies.forEach(s => {
+                const el = document.getElementById(s + 'Settings');
+                if (el) el.classList.add('hidden');
+            });
+            
+            const selected = this.value + 'Settings';
+            const el = document.getElementById(selected);
+            if (el) el.classList.remove('hidden');
+        });
+
+        // Show error message
+        function showError(message) {
+            const el = document.getElementById('errorMessage');
+            el.textContent = message;
+            el.style.display = 'block';
+            setTimeout(() => { el.style.display = 'none'; }, 5000);
+        }
+        
+        // Format price
+        function formatPrice(num) {
+            if (!num) return '0';
+            return num.toLocaleString();
+        }
+        
+        // Format number
+        function formatNumber(num) {
+            if (!num) return '0';
+            return num.toLocaleString();
+        }
+        
+        // Escape HTML for XSS prevention
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Get strategy display name
+        function getStrategyName(strategy) {
+            const names = {
+                'grid': 'Grid Trading',
+                'dca': 'DCA',
+                'arbitrage': 'Arbitrage',
+                'smart': 'Smart Bot'
+            };
+            return names[strategy] || strategy;
+        }
+        
+        // Validate bot configuration
+        async function validateBot(data) {
+            try {
+                const res = await fetch('api.php?action=bots/validate', {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+                return result;
+            } catch (e) {
+                return { valid: false, error: 'Validation failed' };
+            }
+        }
+        
+        // Create bot
+        async function createBot(data) {
+            try {
+                console.log('Creating bot:', data);
+                const res = await fetch('api.php?action=bots', {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await res.json();
+                console.log('API response:', result);
+                
+                if (result.success) {
+                    alert('Bot created successfully!');
+                    window.location.href = 'index.html';
+                } else {
+                    showError(result.error || 'Failed to create bot');
+                }
+            } catch (e) {
+                showError('Error creating bot: ' + e.message);
+            }
+        }
+        
+        // Create bot - form submission
+        document.getElementById('createBotForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Check if user can create more bots
+            if (userLimits.max_bots !== -1 && currentBotCount >= userLimits.max_bots) {
+                showError('You have reached the maximum limit of ' + userLimits.max_bots + ' bots. Please upgrade your subscription.');
+                return;
+            }
+            
+            const data = {
+                name: document.getElementById('botName').value,
+                type: document.getElementById('botType').value,
+                symbol: document.getElementById('botSymbol').value.toUpperCase(),
+                strategy: document.getElementById('botStrategy').value,
+                investment: parseFloat(document.getElementById('botInvestment').value) || 100,
+                leverage: parseInt(document.getElementById('botLeverage').value) || 1,
+                grid_count: parseInt(document.getElementById('gridCount').value) || 10,
+                grid_interval: parseFloat(document.getElementById('gridInterval').value) || 1,
+                lower_price: parseFloat(document.getElementById('lowerPrice').value) || null,
+                upper_price: parseFloat(document.getElementById('upperPrice').value) || null,
+                dca_amount: parseFloat(document.getElementById('dcaAmount').value) || null,
+                dca_interval: parseInt(document.getElementById('dcaInterval').value) || null,
+                dca_multiplier: parseFloat(document.getElementById('dcaMultiplier').value) || 1,
+                max_dca_orders: parseInt(document.getElementById('maxDcaOrders').value) || null,
+                take_profit: parseFloat(document.getElementById('takeProfit').value) || null,
+                stop_loss: parseFloat(document.getElementById('stopLoss').value) || null,
+                min_profit: parseFloat(document.getElementById('minProfit').value) || 0.1
+            };
+            
+            // Validate required fields
+            if (!data.name || !data.type || !data.symbol) {
+                showError('Please fill in all required fields: Name, Type, and Symbol');
+                return;
+            }
+            
+            // Simple confirmation
+            showConfirmModal(
+                'Are you sure?',
+                'Are you sure you want to create this bot?',
+                'CREATE',
+                async () => {
+                    // Validate
+                    const validation = await validateBot(data);
+                    if (!validation.valid) {
+                        showError(validation.error);
+                        return;
+                    }
+                    
+                    // Create bot directly
+                    createBot(data);
+                }
+            );
+        });
+
+        // Custom Confirmation Modal
+        function showConfirmModal(title, message, confirmText, onConfirm) {
+            const existingModal = document.getElementById('confirmModal');
+            if (existingModal) existingModal.remove();
+            
+            const isDelete = confirmText === 'DELETE';
+            const confirmBtnClass = isDelete ? 'btn-confirm-danger' : 'btn-confirm-success';
+            const confirmBtnText = isDelete ? 'YES, DELETE' : 'YES, CREATE';
+            
+            const modalHtml = `
+                <div id="confirmModal" class="modal-overlay" onclick="closeConfirmModal(event)">
+                    <div class="modal-content" onclick="event.stopPropagation()">
+                        <div class="modal-header">
+                            <h2>${escapeHtml(title)}</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>${escapeHtml(message)}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-cancel" onclick="closeConfirmModal()">NO, CANCEL</button>
+                            <button class="${confirmBtnClass}" onclick="executeConfirmAction()">${confirmBtnText}</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            window.pendingConfirmAction = onConfirm;
+        }
+
+        function closeConfirmModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const modal = document.getElementById('confirmModal');
+            if (modal) modal.remove();
+            window.pendingConfirmAction = null;
+        }
+
+        function executeConfirmAction() {
+            const action = window.pendingConfirmAction;
+            closeConfirmModal();
+            if (action && typeof action === 'function') action();
+        }
+
+        // Initialize
+        loadUserLimits();
+    </script>
+</body>
+</html>

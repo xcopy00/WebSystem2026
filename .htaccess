@@ -1,0 +1,43 @@
+# .htaccess - URL Rewriting for Binance AI Trading System
+
+# Enable Rewrite Engine
+RewriteEngine On
+RewriteBase /
+
+# ============================================
+# API ROUTES - Route to api.php (must be before main routing)
+# ============================================
+RewriteCond %{REQUEST_URI} ^/api/ [NC]
+RewriteRule ^api/(.*)$ api.php?route=$1 [L,QSA]
+
+# Don't touch api.php directly
+RewriteCond %{REQUEST_URI} ^/api\.php$ [NC]
+RewriteRule ^api\.php$ - [L]
+
+# ============================================
+# STATIC FILE ROUTES
+# ============================================
+RewriteRule ^/?$ public/index.html [L]
+RewriteRule ^index\.html?$ public/index.html [L]
+RewriteRule ^login\.html?$ public/login.html [L]
+RewriteRule ^register\.html?$ public/register.html [L]
+RewriteRule ^login/?$ public/login.html [L]
+RewriteRule ^register/?$ public/register.html [L]
+RewriteRule ^styles\.css$ public/styles.css [L]
+RewriteRule ^app\.js$ public/app.js [L]
+RewriteRule ^admin\.html$ public/admin.html [L]
+RewriteRule ^admin\.js$ public/admin.js [L]
+RewriteRule ^create-bot\.html?$ public/create-bot.html [L]
+RewriteRule ^vip\.html?$ public/vip.html [L]
+RewriteRule ^sw\.js$ public/sw.js [L]
+RewriteRule ^manifest\.json$ public/manifest.json [L]
+RewriteRule ^favicon\.ico$ public/favicon.ico [L]
+
+# ============================================
+# MAIN ROUTING - Skip api.php and api routes
+# ============================================
+RewriteCond %{REQUEST_URI} !^/api/ [NC]
+RewriteCond %{REQUEST_URI} !^/api\.php$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Binance AI Trade</title>
+    <link href="./styles.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: linear-gradient(180deg, #0a0a0a 0%, #0d1a0d 50%, #0a0a0a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+        .matrix-char {
+            position: absolute;
+            color: #00ff00;
+            font-size: 16px;
+            animation: fall 3s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid #1a3a1a;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        .navbar-brand {
+            color: #00ff00;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+        .navbar-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .navbar-links a {
+            color: #2a5a2a;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        .navbar-links a:hover {
+            color: #00ff00;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        .page-title {
+            color: #00ff00;
+            font-size: 1.75rem;
+            margin-bottom: 2rem;
+        }
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 1024px) {
+            .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-cols-2 { grid-template-columns: 1fr; }
+        }
+        .card {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid #1a3a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .card-title {
+            color: #00ff00;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #1a3a1a;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff00;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #2a5a2a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem !important;
+            font-weight: 600 !important;
+            border: none !important;
+            transition: all 0.3s ease;
+            display: inline-block !important;
+            text-align: center !important;
+            vertical-align: middle !important;
+            line-height: 1.2 !important;
+        }
+        .btn-success { 
+            background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%) !important; 
+            color: #000 !important; 
+        }
+        .btn-danger { 
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important; 
+            color: #fff !important; 
+        }
+        .btn-sm {
+            padding: 0.25rem 0.5rem !important;
+            font-size: 0.75rem !important;
+            border-radius: 4px !important;
+        }
+        .btn-warning { 
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important; 
+            color: #000 !important; 
+        }
+        .btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3); 
+            opacity: 0.9;
+        }
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; color: #2a5a2a; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.5rem;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #1a3a1a;
+            border-radius: 6px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.875rem;
+        }
+        .form-input:focus, .form-select:focus { outline: none; border-color: #00ff00; }
+        .table-container { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #1a3a1a; }
+        th { color: #00ff00; text-transform: uppercase; font-size: 0.75rem; }
+        tr:hover { background: rgba(0, 255, 0, 0.1); }
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .badge-success { background: rgba(0, 255, 0, 0.2); color: #00ff00; }
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .badge-warning { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid #1a3a1a; padding-bottom: 1rem; }
+        .tab {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid #1a3a1a;
+            border-radius: 6px;
+            color: #2a5a2a;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .tab.active { background: linear-gradient(135deg, #00aa00 0%, #00ff00 100%); color: #000; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #333;
+            border-radius: 13px;
+            cursor: pointer;
+        }
+        .toggle.active { background: #00aa00; }
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s;
+        }
+        .toggle.active::after { left: 26px; }
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #333;
+        }
+        .status-dot.online { background: #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+        .status-dot.offline { background: #ef4444; box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+        .error-message {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            border-radius: 6px;
+            padding: 1rem;
+            color: #ef4444;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .success-message {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid #00ff00;
+            border-radius: 6px;
+            padding: 1rem;
+            color: #00ff00;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        .modal-title { color: #fff; font-size: 1.25rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .modal-text { color: #94a3b8; margin-bottom: 1.5rem; }
+        .modal-buttons { display: flex; gap: 1rem; justify-content: center; }
+        .modal-btn {
+            padding: 0.625rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .modal-btn-cancel {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: #fff;
+        }
+        .modal-btn-cancel:hover {
+            background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+        }
+        .modal-btn-confirm {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: #fff;
+        }
+        .modal-btn-confirm:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+    
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">GRATIORA AI TRADE - ADMIN</a>
+        <div class="navbar-links">
+            <a href="index.html">Dashboard</a>
+            <a href="admin.html">Admin</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('overview')">Overview</button>
+            <button class="tab" onclick="showTab('licenses')">License Keys</button>
+            <button class="tab" onclick="showTab('users')">Users</button>
+            <button class="tab" onclick="showTab('server')">Server Control</button>
+        </div>
+        
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <h2 class="page-title">System Overview</h2>
+            <div class="grid grid-cols-4" style="margin-bottom: 2rem;">
+                <div class="card">
+                    <div class="stat-label">Total Users</div>
+                    <div class="stat-value" id="totalUsers">0</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">Online Now</div>
+                    <div class="stat-value" id="onlineUsers">0</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">Total Bots</div>
+                    <div class="stat-value" id="totalBots">0</div>
+                </div>
+                <div class="card">
+                    <div class="stat-label">Running Bots</div>
+                    <div class="stat-value" id="runningBots">0</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">Subscription Distribution</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>VIP Level</th>
+                                <th>Users</th>
+                                <th>Bots</th>
+                                <th>Running</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subscriptionStats">
+                            <tr><td colspan="4">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Licenses Tab -->
+        <div id="licenses" class="tab-content">
+            <h2 class="page-title">License Key Management</h2>
+            
+            <div class="grid grid-cols-2" style="margin-bottom: 2rem;">
+                <div class="card">
+                    <h3 class="card-title">Generate New License</h3>
+                    <div class="form-group">
+                        <label class="form-label">VIP Level</label>
+                        <select class="form-select" id="licenseType">
+                            <option value="VIP1">VIP1 - Starter</option>
+                            <option value="VIP2">VIP2 - Trader</option>
+                            <option value="VIP3">VIP3 - Pro</option>
+                            <option value="VIP4">VIP4 - Elite</option>
+                            <option value="VIP5">VIP5 - Master</option>
+                            <option value="VIP6">VIP6 - Legend</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Validity (days)</label>
+                        <input type="number" class="form-input" id="licenseValidity" value="30" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Quantity</label>
+                        <input type="number" class="form-input" id="licenseQuantity" value="1" min="1" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <input type="text" class="form-input" id="licenseNotes" placeholder="Optional notes">
+                    </div>
+                    <button class="btn btn-success" onclick="generateLicense()">Generate License</button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Generated Keys</h3>
+                    <div id="generatedKeys" style="max-height: 300px; overflow-y: auto;">
+                        <p style="color: #2a5a2a; font-size: 0.875rem;">Generated keys will appear here...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 class="card-title">All License Keys</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Used By</th>
+                                <th>Expires</th>
+                                <th>Created</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="licenseTable">
+                            <tr><td colspan="8">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Users Tab -->
+        <div id="users" class="tab-content">
+            <h2 class="page-title">User Management</h2>
+            <div class="card">
+                <h3 class="card-title">All Users</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Bots</th>
+                                <th>Status</th>
+                                <th>Last Login</th>
+                                <th>IP Address</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <tr><td colspan="9">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Server Control Tab -->
+        <div id="server" class="tab-content">
+            <h2 class="page-title">Server Control</h2>
+            
+            <div class="grid grid-cols-2" style="margin-bottom: 2rem;">
+                <div class="card">
+                    <h3 class="card-title">Worker Server Status</h3>
+                    <div class="server-status" style="margin-bottom: 1rem;">
+                        <div class="status-dot" id="workerStatusDot"></div>
+                        <span id="workerStatusText">Checking...</span>
+                    </div>
+                    <div id="workerDetails" style="color: #2a5a2a; font-size: 0.875rem;"></div>
+                    <p style="color: #2a5a2a; font-size: 0.75rem; margin-top: 0.5rem;">Monitors worker process status</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">API Connection Status</h3>
+                    <div class="server-status" style="margin-bottom: 1rem;">
+                        <div class="status-dot" id="apiStatusDot"></div>
+                        <span id="apiStatusText">Checking...</span>
+                    </div>
+                    <div id="apiDetails" style="color: #2a5a2a; font-size: 0.875rem;"></div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2">
+                <div class="card">
+                    <h3 class="card-title">Registration Settings</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <span>Allow New Registrations</span>
+                        <div class="toggle" id="registrationToggle" onclick="toggleRegistration()"></div>
+                    </div>
+                    <p style="color: #2a5a2a; font-size: 0.75rem;">When disabled, new users cannot register</p>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title">Bot Statistics</h3>
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <td>Total Bots</td>
+                                <td id="statTotalBots" style="text-align: right; color: #00ff00;">0</td>
+                            </tr>
+                            <tr>
+                                <td>Running</td>
+                                <td id="statRunningBots" style="text-align: right; color: #00ff00;">0</td>
+                            </tr>
+                            <tr>
+                                <td>Stopped</td>
+                                <td id="statStoppedBots" style="text-align: right; color: #f59e0b;">0</td>
+                            </tr>
+                            <tr>
+                                <td>Errors</td>
+                                <td id="statErrorBots" style="text-align: right; color: #ef4444;">0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Matrix rain effect
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const matrixBg = document.getElementById('matrixBg');
+        const cols = Math.floor(window.innerWidth / 20);
+        
+        for (let i = 0; i < cols; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            char.style.left = i * 20 + 'px';
+            char.style.animationDelay = Math.random() * 3 + 's';
+            char.style.animationDuration = 3 + Math.random() * 2 + 's';
+            matrixBg.appendChild(char);
+        }
+
+        const token = localStorage.getItem('authToken');
+        
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Check admin status
+        async function checkAdmin() {
+            try {
+                const res = await fetch('api.php?action=me', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.ok) {
+                    const user = await res.json();
+                    if (user.role !== 'Admin') {
+                        showError('Access denied. Admin only.');
+                        setTimeout(() => window.location.href = 'index.html', 2000);
+                        return false;
+                    }
+                    return true;
+                }
+            } catch (e) {
+                showError('Error checking admin status');
+                return false;
+            }
+        }
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            el.textContent = msg;
+            el.style.display = 'block';
+            setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        function showSuccess(msg) {
+            const el = document.getElementById('successMessage');
+            el.textContent = msg;
+            el.style.display = 'block';
+            setTimeout(() => el.style.display = 'none', 5000);
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        async function loadOverview() {
+            try {
+                const res = await fetch('api.php?action=admin/dashboard', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('totalUsers').textContent = data.users?.total_users || 0;
+                    document.getElementById('onlineUsers').textContent = data.users?.active_users || 0;
+                    document.getElementById('totalBots').textContent = data.users?.total_bots || 0;
+                    document.getElementById('runningBots').textContent = data.users?.running_bots || 0;
+                }
+            } catch (e) {
+                console.error('Error loading overview:', e);
+            }
+        }
+
+        async function loadLicenseStats() {
+            try {
+                const res = await fetch('api.php?action=admin/licenses/stats', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.ok) {
+                    const stats = await res.json();
+                    // Will be used for subscription distribution
+                }
+            } catch (e) {
+                console.error('Error loading license stats:', e);
+            }
+        }
+
+        async function generateLicense() {
+            const type = document.getElementById('licenseType').value;
+            const validity = document.getElementById('licenseValidity').value;
+            const quantity = document.getElementById('licenseQuantity').value;
+            const notes = document.getElementById('licenseNotes').value;
+
+            try {
+                const res = await fetch('api.php?action=admin/licenses/generate', {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        type: type,
+                        validity_days: parseInt(validity),
+                        count: parseInt(quantity),
+                        notes: notes
+                    })
+                });
+                
+                const result = await res.json();
+                if (result.success) {
+                    const container = document.getElementById('generatedKeys');
+                    container.innerHTML = result.codes.map(c => 
+                        `<div style="padding: 0.5rem; border-bottom: 1px solid #1a3a1a; font-family: monospace; color: #00ff00;">${c}</div>`
+                    ).join('');
+                    showSuccess(`Generated ${result.count} license codes`);
+                    loadLicenses();
+                } else {
+                    showError(result.error || 'Failed to generate licenses');
+                }
+            } catch (e) {
+                showError('Error generating licenses');
+            }
+        }
+
+        async function loadUsers() {
+            try {
+                const res = await fetch('api.php?action=admin/users', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.ok) {
+                    const users = await res.json();
+                    const tbody = document.getElementById('usersTable');
+                    tbody.innerHTML = users.map(u => `
+                        <tr>
+                            <td>${u.id}</td>
+                            <td>${u.email}</td>
+                            <td>${u.name || '-'}</td>
+                            <td><span class="badge badge-success">${u.role}</span></td>
+                            <td>${u.bots_count || 0}</td>
+                            <td>
+                                <span class="badge ${u.is_active ? 'badge-success' : 'badge-danger'}">
+                                    ${u.is_active ? 'Active' : 'Inactive'}
+                                </span>
+                            </td>
+                            <td>${u.last_login ? new Date(u.last_login).toLocaleString() : 'Never'}</td>
+                            <td>
+                                <button id="toggleBtn_${u.id}" class="btn ${u.is_active ? 'btn-danger' : 'btn-success'}" 
+                                        onclick="toggleUserStatus(${u.id}, ${!u.is_active})">
+                                    ${u.is_active ? 'Deactivate' : 'Activate'}
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('') || '<tr><td colspan="8">No users found</td></tr>';
+                }
+            } catch (e) {
+                console.error('Error loading users:', e);
+            }
+        }
+
+        async function toggleUserStatus(id, activate) {
+            try {
+                await api(`/api/admin/users/${id}/${activate ? 'activate' : 'deactivate'}`, {
+                    method: 'PUT'
+                });
+                loadUsers();
+                loadDashboardStats();
+                alert(`User ${activate ? 'activated' : 'deactivated'}!`);
+            } catch (error) {
+                alert('Failed to update user: ' + error.message);
+            }
+        }
+
+        async function startWorker() {
+            showSuccess('Worker start command sent');
+            // In real implementation, this would start the worker process
+        }
+
+        async function stopWorker() {
+            showSuccess('Worker stop command sent');
+        }
+
+        async function restartWorker() {
+            showSuccess('Worker restart command sent');
+        }
+
+        // Initialize
+        checkAdmin().then(isAdmin => {
+            if (isAdmin) {
+                loadOverview();
+                loadLicenses();
+                loadUsers();
+                loadSettings();
+            }
+        });
+        
+        async function loadSettings() {
+            try {
+                const res = await fetch('api.php?action=admin/settings', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.ok) {
+                    const settings = await res.json();
+                    if (settings.registration_enabled) {
+                        document.getElementById('registrationToggle').classList.add('active');
+                    }
+                }
+            } catch (e) {
+                console.error('Error loading settings:', e);
+            }
+        }
+        
+        async function toggleRegistration() {
+            const toggle = document.getElementById('registrationToggle');
+            const enabled = !toggle.classList.contains('active');
+            
+            try {
+                const res = await fetch('api.php?action=admin/settings', {
+                    method: 'POST',
+                    headers: { 
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ registration_enabled: enabled })
+                });
+                
+                if (res.ok) {
+                    toggle.classList.toggle('active');
+                    showSuccess(`Registration ${enabled ? 'enabled' : 'disabled'}`);
+                } else {
+                    showError('Failed to update settings');
+                }
+            } catch (e) {
+                showError('Error updating settings');
+            }
+        }
+    </script>
+    
+    <!-- Confirmation Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal">
+            <h3 class="modal-title" id="confirmTitle">Are you sure?</h3>
+            <p class="modal-text" id="confirmText">This action cannot be undone.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeConfirmModal()">NO, CANCEL</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmBtn" onclick="executeConfirmAction()">YES, PROCEED</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="admin.js"></script>
+</body>
+</html>
